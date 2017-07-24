@@ -53,34 +53,8 @@ module Sunspot::Queue
     end
     alias :remove_by_id! :remove_by_id
 
-    # The following are all delegated to session
-    def new_search(*args, &block)
-      session.new_search(*args, &block)
-    end
-
-    def search(*args, &block)
-      session.search(*args, &block)
-    end
-
-    def new_more_like_this(*args, &block)
-      session.new_more_like_this(*args, &block)
-    end
-
-    def more_like_this(*args, &block)
-      session.more_like_this(*args, &block)
-    end
-
-    def config
-      session.config
-    end
-
-    def remove_all(*args)
-      session.remove_all(*args)
-    end
-
-    def remove_all!(*args)
-      session.remove_all(*args)
-    end
+    delegate :new_search, :search, :new_more_like_this, :more_like_this, :config, :remove_all, :remove_all!,
+             to: :session
 
     # All of the following are are here to match API but don't make sense to be
     # implemented
